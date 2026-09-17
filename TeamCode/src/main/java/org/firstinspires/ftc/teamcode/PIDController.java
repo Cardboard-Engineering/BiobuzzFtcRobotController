@@ -20,11 +20,15 @@ public class PIDController {
 
 	public float update(float current, float target, float dt) {
 		float error = target - current;
+
 		float p = mKP * error;
+
 		mIntegral += error * dt;
 		float i = mKI * mIntegral;
+
 		float d = mKD * (error - mLastError) / dt;
 		mLastError = error;
+
 		return Math.max(Math.min(p + i  + d, mMax), mMin);
 	}
 }
